@@ -7,10 +7,10 @@ import { List, Item } from './styles'
 
 const withActiveMovies = graphql(
   gql`
-    query {
+    query($date: Date!, $timeOfDay: DateRange!) {
       activeMovies(
-        date: "2020-03-24"
-        timeOfDay: "12:00-17:59"
+        date: $date
+        timeOfDay: $timeOfDay
         timeZone: "America/Mexico_City"
       ) {
         name
