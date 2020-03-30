@@ -1,30 +1,9 @@
 import React from 'react'
-import { graphql } from 'react-apollo'
-import { gql } from 'apollo-boost'
 import { useShowOnScroll } from '../../hooks/useShowOnScroll'
 import { MovieIcon } from '../MovieIcon/index'
 import { List, Item } from './styles'
 
-const withActiveMovies = graphql(
-  gql`
-    query($date: Date!, $timeOfDay: DateRange!) {
-      activeMovies(
-        date: $date
-        timeOfDay: $timeOfDay
-        timeZone: "America/Mexico_City"
-      ) {
-        name
-        id
-        cover
-      }
-    }
-  `
-)
-
-const ListOfMovieIconComponent = ({
-  loading,
-  data: { activeMovies = [] }
-} = {}) => {
+export const ListOfMovieIcon = ({ loading, activeMovies = [] } = {}) => {
   const [showFixed] = useShowOnScroll(200)
 
   // TODO Make a better loading component
@@ -54,4 +33,3 @@ const ListOfMovieIconComponent = ({
     </>
   )
 }
-export const ListOfMovieIcon = withActiveMovies(ListOfMovieIconComponent)
