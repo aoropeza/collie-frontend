@@ -4,6 +4,7 @@ import { GlobalStyles } from './styles/GlobalStyles'
 import { SceneSearch } from './components/Scenes/Search'
 import { SceneAbout } from './components/Scenes/About/index'
 import { Logo } from './components/UI/Logo'
+import { NavBar } from './components/Sections/NavBar'
 
 export const App = () => (
   <>
@@ -13,5 +14,6 @@ export const App = () => (
       <SceneSearch path="/" />
       <SceneAbout path="/about" />
     </Router>
+    <NavBar />
   </>
 )
