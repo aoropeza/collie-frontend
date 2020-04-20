@@ -1,7 +1,6 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
-import { ListOfMovies } from '../components/Lists/ListOfMovies'
 
 const GET_ACTIVE_MOVIE = gql`
   query($date: Date!, $timeOfDay: DateRange!) {
@@ -17,15 +16,8 @@ const GET_ACTIVE_MOVIE = gql`
   }
 `
 
-const renderProp = ({ loading, error, data: { activeMovies = [] } = {} }) => {
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!!!</p>
-
-  return <ListOfMovies activeMovies={activeMovies} />
-}
-
-export const ListOfActiveMovies = ({ date, timeOfDay }) => (
+export const QueryActiveMovies = ({ date, timeOfDay, children }) => (
   <Query query={GET_ACTIVE_MOVIE} variables={{ date, timeOfDay }}>
-    {renderProp}
+    {children}
   </Query>
 )

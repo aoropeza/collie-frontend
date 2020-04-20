@@ -1,10 +1,19 @@
 import React from 'react'
 import { Filters } from '../../Sections/Filters'
-import { ListOfDetailCards } from '../../Lists/ListOfDetailCards'
+import { QuerySchedulesBy } from '../../../queries/QuerySchedulesBy'
 
 export const SceneSearch = () => (
   <>
-    <Filters />
-    <ListOfDetailCards />
+    <Filters>
+      {({ movieSelected }) => (
+        <QuerySchedulesBy
+          movieName={movieSelected}
+          date="2020-03-20"
+          timeOfDay="09:00-17:59"
+          latitude={19.4499759}
+          longitude={-99.0704167}
+        />
+      )}
+    </Filters>
   </>
 )

@@ -1,8 +1,12 @@
-import React from 'react'
-import { ListOfActiveMovies } from '../../../container/ListOfActiveMovies'
+import React, { useState } from 'react'
+import { ListOfMovies } from '../../Lists/ListOfMovies'
 
-export const Filters = () => (
-  <>
-    <ListOfActiveMovies date="2020-03-24" timeOfDay="12:00-17:59" />
-  </>
-)
+export const Filters = ({ children }) => {
+  const [movieSelected, setMovieSelected] = useState('nada')
+  return (
+    <>
+      <ListOfMovies updateKey={setMovieSelected} />
+      {children({ movieSelected })}
+    </>
+  )
+}
