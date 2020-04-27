@@ -1,39 +1,20 @@
 import styled from 'styled-components'
-import { Link as LinkRouter } from '@reach/router'
-import { fadeIn } from '../../../styles/animation'
 
 export const Nav = styled.nav`
-  align-items: center;
-  background: #fcfcfc;
-  border-top: 1px solid #e0e0e0;
-  bottom: 0px;
-  display: flex;
-  height: 50px;
-  justify-content: space-around;
-  left: 0px;
-  margin: 0 auto;
-  max-width: 500px;
+  border-style: solid;
+  border-width: 2px;
+  border-left-color: #ffffff;
+  border-top-color: #ffffff;
+  border-right-color: #050608;
+  border-bottom-color: #050608;
+  box-shadow: 4px -4px 10px 0 rgba(0, 0, 0, 0.35), inset 1px 1px 0px 1px #dfe0e3,
+    inset -1px -1px 0 1px #888c8f;
+  box-sizing: border-box;
+  background-color: #ced0cf;
+  color: #050608;
   position: fixed;
-  right: 0px;
+  bottom: 0.5px;
+  right: 0;
+  left: auto;
   width: 100%;
-  z-index: 1000;
-`
-export const Link = styled(LinkRouter)`
-  align-items: center;
-  color: #888;
-  display: inline-flex;
-  height: 100%;
-  justify-content: center;
-  text-decoration: none;
-  width: 100%;
-  &[aria-current] {
-    color: #000;
-    &:after {
-      ${fadeIn({ time: '0.5s' })};
-      content: '.';
-      position: absolute;
-      bottom: 0px;
-      font-size: 34px;
-    }
-  }
 `

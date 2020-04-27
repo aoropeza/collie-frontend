@@ -27,10 +27,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: #fefefe;
+    background: teal;
     height: 100vh;
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 95%;
     overscroll-behavior: none;
     width: 100%;
   }
