@@ -1,24 +1,21 @@
 import React, { useState } from 'react'
 import { Button, List, ListItem } from 'react95'
 import { Link } from '@reach/router'
-
-import { LogoIcon } from '../../UI/LogoIcon'
+import { LogoIcon } from '../LogoIcon'
+import { Container } from './styles'
 
 export const Menu = () => {
   const [open, setOpen] = useState(false)
 
-  function handleClick() {
-    setOpen(!open)
-  }
-
-  function handleClose() {
-    setOpen(false)
-  }
-
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <Container>
       {open && (
-        <List open={open} onClick={handleClose}>
+        <List
+          horizontalAlign="left"
+          verticalAlign="bottom"
+          open={open}
+          onClick={() => setOpen(false)}
+        >
           <ListItem>
             <Link to="/"> Home </Link>
           </ListItem>
@@ -28,13 +25,13 @@ export const Menu = () => {
         </List>
       )}
       <Button
-        onClick={handleClick}
+        onClick={() => setOpen(!open)}
         active={open}
         style={{ fontWeight: 'bold' }}
       >
         <LogoIcon style={{ marginLeft: -2, marginRight: 4 }} />
         Start
       </Button>
-    </div>
+    </Container>
   )
 }

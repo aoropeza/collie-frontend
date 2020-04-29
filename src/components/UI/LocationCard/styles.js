@@ -25,11 +25,3 @@ export const Img = styled.img`
   top: 0;
   width: 100%;
 `
-
-export const ContentText = styled.div`
-  display: flex;
-  align-items: center;
-  & svg {
-    margin-right: 4px;
-  }
-`

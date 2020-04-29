@@ -7,8 +7,7 @@ import { reset, themes } from 'react95'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { SceneSearch } from './components/Scenes/Search'
 import { SceneAbout } from './components/Scenes/About/index'
-import { Logo } from './components/UI/Logo'
-import { NavBar } from './components/Sections/NavBar'
+import { NavBar } from './components/UI/NavBar'
 
 const ResetStyles = createGlobalStyle`
   ${reset}
@@ -19,11 +18,20 @@ export const App = () => (
     <ResetStyles />
     <ThemeProvider theme={themes.default}>
       <GlobalStyles />
-      <Router>
-        <SceneSearch path="/" />
-        <SceneAbout path="/about" />
-      </Router>
-      <NavBar />
+      <NavBar>
+        {({ dateSelected, timeSelected }) => {
+          return (
+            <Router>
+              <SceneSearch
+                path="/"
+                dateSelected={dateSelected}
+                timeSelected={timeSelected}
+              />
+              <SceneAbout path="/about" />
+            </Router>
+          )
+        }}
+      </NavBar>
     </ThemeProvider>
   </>
 )

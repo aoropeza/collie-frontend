@@ -1,44 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { QueryActiveMovies } from '../../../queries/QueryActiveMovies'
-import { useShowOnScroll } from '../../../hooks/useShowOnScroll'
 import { Movie } from '../../UI/Movie'
-import { List, Item } from './styles'
+import { List, Item, Container } from './styles'
 
-const renderListOfMovies = updateKeyHandler => ({
+const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   loading,
   error,
   data: { activeMovies = [] } = {}
-}) => {
-  const [showFixed] = useShowOnScroll(200)
-
+}) => (
   // TODO Make a better loading component
-  const renderList = fixed => (
-    <List fixed={fixed}>
-      {activeMovies.map(movie => {
-        const { cover, name } = movie
-        return (
-          <Item key={movie.id} onClick={() => updateKeyHandler(name)}>
-            <Movie cover={cover} name={name} />
-          </Item>
-        )
-      })}
-    </List>
-  )
+  <>
+    <Container>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error!!!</p>}
+      {!loading && !error && (
+        <List>
+          {activeMovies.map(movie => {
+            const { cover, name } = movie
+            return (
+              <Item key={movie.id} onClick={() => setMovieSelected(name)}>
+                <Movie cover={cover} name={name} />
+              </Item>
+            )
+          })}
+        </List>
+      )}
+    </Container>
+    {children({ movieSelected })}
+  </>
+)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!!!</p>
+export const ListOfMovies = ({ children }) => {
+  const [movieSelected, setMovieSelected] = useState(undefined)
   return (
     <>
-      {renderList()}
-      {showFixed && renderList(true)}
+      <QueryActiveMovies date="2020-03-24" timeOfDay="12:00-17:59">
+        {renderProp({ children, movieSelected, setMovieSelected })}
+      </QueryActiveMovies>
     </>
   )
 }
-
-export const ListOfMovies = ({ updateKey }) => (
-  <>
-    <QueryActiveMovies date="2020-03-24" timeOfDay="12:00-17:59">
-      {renderListOfMovies(updateKey)}
-    </QueryActiveMovies>
-  </>
-)

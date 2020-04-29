@@ -1,7 +1,6 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
-import { ListOfLocationsDetail } from '../components/Lists/ListOfLocationsDetail'
 
 const GET_SCHEDULES_BY_MOVIE = gql`
   query(
@@ -38,28 +37,19 @@ const GET_SCHEDULES_BY_MOVIE = gql`
     }
   }
 `
-const renderProp = ({
-  loading,
-  error,
-  data: { infoSchedulesByMovie = [] } = {}
-}) => {
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!!!</p>
-
-  return <ListOfLocationsDetail schedules={infoSchedulesByMovie} />
-}
 
 export const QuerySchedulesBy = ({
   movieName,
   date,
   timeOfDay,
   latitude,
-  longitude
+  longitude,
+  children
 }) => (
   <Query
     query={GET_SCHEDULES_BY_MOVIE}
     variables={{ movieName, date, timeOfDay, latitude, longitude }}
   >
-    {renderProp}
+    {children}
   </Query>
 )

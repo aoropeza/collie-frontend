@@ -1,6 +1,5 @@
 import React from 'react'
-import { MdPageview } from 'react-icons/md'
-import { Article, ImgWrapper, Img, ContentText } from './styles'
+import { Article, ImgWrapper, Img } from './styles'
 import { useNearScreen } from '../../../hooks/useNearScreen'
 
 export const LocationCard = ({
