@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import Grid from '@material-ui/core/Grid'
 import { QueryActiveMovies } from '../../../queries/QueryActiveMovies'
 import { Movie } from '../../UI/Movie'
-import { List, Item, Container } from './styles'
+import { Container } from './styles'
 
 const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   loading,
@@ -14,16 +15,25 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
       {loading && <p>Loading...</p>}
       {error && <p>Error!!!</p>}
       {!loading && !error && (
-        <List>
-          {activeMovies.map(movie => {
-            const { cover, name } = movie
-            return (
-              <Item key={movie.id} onClick={() => setMovieSelected(name)}>
+        <>
+          <Grid container alignItems="center">
+            {activeMovies.map(({ id, cover, name }) => (
+              <Grid
+                style={{ paddingTop: 30 }}
+                item
+                xs={6}
+                sm={4}
+                md={3}
+                lg={2}
+                xl={2}
+                key={id}
+                onClick={() => setMovieSelected(name)}
+              >
                 <Movie cover={cover} name={name} />
-              </Item>
-            )
-          })}
-        </List>
+              </Grid>
+            ))}
+          </Grid>
+        </>
       )}
     </Container>
     {children({ movieSelected })}
