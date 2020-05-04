@@ -26,8 +26,10 @@ export const Span = styled.span`
 `
 
 export const Image = styled.img`
+  border: 1px solid #ddd;
+  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
   object-fit: cover;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   margin: auto auto 10px auto;
 `

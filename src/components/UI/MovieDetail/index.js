@@ -2,7 +2,7 @@ import React from 'react'
 import { Article, ImgWrapper, Img } from './styles'
 import { useNearScreen } from '../../../hooks/useNearScreen'
 
-export const LocationCard = ({
+export const MovieDetail = ({
   name,
   address,
   brand: { logo: logoBrand },

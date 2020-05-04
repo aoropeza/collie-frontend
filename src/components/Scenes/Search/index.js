@@ -1,13 +1,13 @@
 import React from 'react'
 import { ListOfMovies } from '../../Lists/ListOfMovies/index'
-import { ListOfLocationsDetail } from '../../Lists/ListOfLocationsDetail'
+import { ListOfMoviesDetail } from '../../Lists/ListOfMoviesDetail'
 
 export const SceneSearch = ({ dateSelected, timeSelected }) => {
   return (
     <ListOfMovies>
       {({ movieSelected }) =>
         movieSelected ? (
-          <ListOfLocationsDetail
+          <ListOfMoviesDetail
             movieName={movieSelected}
             // date="2020-03-20"
             date={dateSelected}
