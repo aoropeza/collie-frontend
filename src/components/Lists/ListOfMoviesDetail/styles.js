@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { Window, WindowHeader, Button } from 'react95'
+import { Window, WindowHeader, Button, WindowContent, Hourglass } from 'react95'
 
 export const Container = styled.div`
   width: 100%;
   position: absolute;
   left: 0;
-  top: 120px;
+  top: 90px;
   max-height: 700px;
 `
 
@@ -25,6 +25,10 @@ export const SpanUI = styled.span`
   transform: 'translateY(-1px)';
 `
 
+export const WindowContentUI = styled(WindowContent)`
+  min-height: 400px;
+`
+
 export const WindowHeaderUI = styled(WindowHeader)`
   display: flex;
   align-items: center;
@@ -34,4 +38,13 @@ export const WindowHeaderUI = styled(WindowHeader)`
 export const Ul = styled.ul`
   overflow: hidden;
   overflow-y: scroll;
+`
+
+export const HourglassUI = styled(Hourglass)`
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 `

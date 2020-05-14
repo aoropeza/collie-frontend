@@ -8,7 +8,7 @@ export const Menu = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <Container>
+    <Container style={{ display: 'inline' }}>
       {open && (
         <List
           horizontalAlign="left"

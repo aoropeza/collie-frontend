@@ -17,7 +17,7 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
       {!loading && !error && (
         <>
           <Grid container alignItems="center">
-            {activeMovies.map(({ id, cover, name }) => (
+            {activeMovies.map(movie => (
               <Grid
                 style={{ paddingTop: 30 }}
                 item
@@ -26,17 +26,22 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
                 md={3}
                 lg={2}
                 xl={2}
-                key={id}
-                onClick={() => setMovieSelected(name)}
+                key={movie.id}
+                onClick={() => setMovieSelected(movie)}
               >
-                <Movie cover={cover} name={name} />
+                <Movie
+                  cover={movie.cover}
+                  name={movie.name}
+                  id={movie.id}
+                  isSelected={movieSelected && movieSelected.id === movie.id}
+                />
               </Grid>
             ))}
           </Grid>
         </>
       )}
     </Container>
-    {children({ movieSelected })}
+    {children({ movieSelected, setMovieSelected })}
   </>
 )
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Router } from '@reach/router'
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -13,25 +13,27 @@ const ResetStyles = createGlobalStyle`
   ${reset}
 `
 
-export const App = () => (
-  <>
-    <ResetStyles />
-    <ThemeProvider theme={themes.default}>
-      <GlobalStyles />
-      <NavBar>
-        {({ dateSelected, timeSelected }) => {
-          return (
-            <Router>
-              <SceneSearch
-                path="/"
-                dateSelected={dateSelected}
-                timeSelected={timeSelected}
-              />
-              <SceneAbout path="/about" />
-            </Router>
-          )
-        }}
-      </NavBar>
-    </ThemeProvider>
-  </>
-)
+export const App = () => {
+  return (
+    <>
+      <ResetStyles />
+      <ThemeProvider theme={themes.default}>
+        <GlobalStyles />
+        <NavBar>
+          {({ dateSelected, timeSelected }) => {
+            return (
+              <Router>
+                <SceneSearch
+                  path="/"
+                  dateSelected={dateSelected}
+                  timeSelected={timeSelected}
+                />
+                <SceneAbout path="/about" />
+              </Router>
+            )
+          }}
+        </NavBar>
+      </ThemeProvider>
+    </>
+  )
+}

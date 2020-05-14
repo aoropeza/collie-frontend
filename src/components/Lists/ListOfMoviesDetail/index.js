@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Toolbar, WindowContent } from 'react95'
+import { Button, Toolbar } from 'react95'
 import { MovieDetail } from '../../UI/MovieDetail'
 import { QuerySchedulesBy } from '../../../queries/QuerySchedulesBy'
 import { useWindowDimensions } from '../../../hooks/useWindowDimensions'
@@ -7,25 +7,34 @@ import {
   Container,
   WindowUI,
   WindowHeaderUI,
+  WindowContentUI,
+  HourglassUI,
   ButtonUI,
   SpanUI,
   Ul
 } from './styles'
+import { messageService } from '../../../services'
 
-const renderProp = ({
+const renderProp = ({ name, setMovieSelected }) => ({
   loading,
   error,
   data: { infoSchedulesByMovie = [] } = {}
 }) => {
+  messageService.sendMessage(name)
   const { height } = useWindowDimensions()
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!!!</p>
   return (
     <Container>
-      <WindowUI style={{}}>
+      <WindowUI>
         <WindowHeaderUI>
-          <span>react95.exe</span>
-          <ButtonUI size="sm" square onClick={() => console.log('jajkadjkda')}>
+          <span>{`${name}.exe`}</span>
+          <ButtonUI
+            size="sm"
+            square
+            onClick={() => {
+              setMovieSelected(undefined)
+              messageService.sendMessage(undefined)
+            }}
+          >
             <SpanUI>x</SpanUI>
           </ButtonUI>
         </WindowHeaderUI>
@@ -40,35 +49,40 @@ const renderProp = ({
             Save
           </Button>
         </Toolbar>
-        <WindowContent>
-          <Ul style={{ height: height - 300 }}>
-            {infoSchedulesByMovie.map(({ computedUnique, ...item }) => (
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              <MovieDetail key={computedUnique} {...item} />
-            ))}
-          </Ul>
-        </WindowContent>
+        <WindowContentUI>
+          {loading && <HourglassUI size={32} />}
+          {error && <p>Error!!!</p>}
+          {!loading && !error && (
+            <Ul style={{ height: height - 240 }}>
+              {infoSchedulesByMovie.map(({ computedUnique, ...item }) => (
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                <MovieDetail key={computedUnique} {...item} />
+              ))}
+            </Ul>
+          )}
+        </WindowContentUI>
       </WindowUI>
     </Container>
   )
 }
 
 export const ListOfMoviesDetail = ({
-  movieName,
+  movie: { name },
   date,
   timeOfDay,
   latitude,
-  longitude
+  longitude,
+  setMovieSelected
 }) => {
   return (
     <QuerySchedulesBy
-      movieName={movieName}
+      movieName={name}
       date={date}
       timeOfDay={timeOfDay}
       latitude={latitude}
       longitude={longitude}
     >
-      {renderProp}
+      {renderProp({ name, setMovieSelected })}
     </QuerySchedulesBy>
   )
 }

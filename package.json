@@ -46,6 +46,7 @@
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react95": "^2.0.0",
+    "rxjs": "^6.5.5",
     "styled-components": "^5.0.1"
   }
 }

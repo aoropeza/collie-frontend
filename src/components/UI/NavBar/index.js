@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { Toolbar, Button, Select } from 'react95'
 import moment from 'moment'
 import { Menu } from '../Menu'
-import { Ul, AppBarUI, DatePickerUI } from './styles'
+import { Ul, AppBarUI, DatePickerUI, ButtonUI, ImgUI } from './styles'
+import cdIMG from '../../../images/cd.png'
+import { messageService } from '../../../services'
 
 const items = [
   { value: '1:00-11:59', label: '🌈 Mañana' },
@@ -14,12 +16,25 @@ export const NavBar = ({ children }) => {
   const [shouldBeDatePickerOpen, setShouldBeDatePickerOpen] = useState(false)
   const [date, setDate] = useState(moment())
   const [timeSelected, setTimeSelected] = useState(items[0].value)
+  const [currentExecName, setCurrentExecName] = useState(undefined)
+
+  messageService.onMessage().subscribe(execName => setCurrentExecName(execName))
 
   return (
     <>
       <AppBarUI>
         <Toolbar style={{ justifyContent: 'space-between' }}>
-          <Menu />
+          <div>
+            <Menu />
+            <ButtonUI
+              className="bold"
+              active
+              style={{ display: currentExecName ? 'inline-block' : 'none' }}
+            >
+              <ImgUI src={cdIMG} alt="cdLogo" />
+              {currentExecName}
+            </ButtonUI>
+          </div>
           <Ul>
             <li>
               <Select
@@ -30,9 +45,9 @@ export const NavBar = ({ children }) => {
             </li>
             <li>
               <Button
-                onClick={() =>
-                  setShouldBeDatePickerOpen(!shouldBeDatePickerOpen)
-                }
+                onClick={() => {
+                  return setShouldBeDatePickerOpen(!shouldBeDatePickerOpen)
+                }}
               >
                 {date.format('DD-MM-YYYY')}
               </Button>
