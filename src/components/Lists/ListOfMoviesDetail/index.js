@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Toolbar } from 'react95'
+import React, { useState } from 'react'
+import { Button, Toolbar, Tabs, Tab, TabBody } from 'react95'
 import { MovieDetail } from '../../UI/MovieDetail'
 import { QuerySchedulesBy } from '../../../queries/QuerySchedulesBy'
 import { useWindowDimensions } from '../../../hooks/useWindowDimensions'
@@ -11,7 +11,8 @@ import {
   HourglassUI,
   ButtonUI,
   SpanUI,
-  Ul
+  Ul,
+  IMG
 } from './styles'
 import { messageService } from '../../../services'
 
@@ -22,6 +23,7 @@ const renderProp = ({ name, setMovieSelected }) => ({
 }) => {
   messageService.sendMessage(name)
   const { height } = useWindowDimensions()
+  const [activeTab, setActiveTab] = useState(0)
   return (
     <Container>
       <WindowUI>
@@ -38,27 +40,67 @@ const renderProp = ({ name, setMovieSelected }) => ({
             <SpanUI>x</SpanUI>
           </ButtonUI>
         </WindowHeaderUI>
-        <Toolbar>
-          <Button variant="menu" size="sm">
-            File
-          </Button>
-          <Button variant="menu" size="sm">
-            Edit
-          </Button>
-          <Button variant="menu" size="sm" disabled>
-            Save
-          </Button>
-        </Toolbar>
         <WindowContentUI>
           {loading && <HourglassUI size={32} />}
           {error && <p>Error!!!</p>}
           {!loading && !error && (
-            <Ul style={{ height: height - 240 }}>
-              {infoSchedulesByMovie.map(({ computedUnique, ...item }) => (
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                <MovieDetail key={computedUnique} {...item} />
-              ))}
-            </Ul>
+            <>
+              <Tabs value={activeTab} onChange={value => setActiveTab(value)}>
+                <Tab value={0}>
+                  <div>
+                    <IMG
+                      src="https://collie-static.s3.amazonaws.com/images/cinepolis_logo.jpg"
+                      alt=""
+                    />
+                    Cinepolis
+                  </div>
+                </Tab>
+                <Tab value={1}>
+                  <div>
+                    <IMG
+                      src="https://collie-static.s3.amazonaws.com/images/cinemex_logo.jpg"
+                      alt=""
+                    />
+                    Cinemex
+                  </div>
+                </Tab>
+              </Tabs>
+              <>
+                {activeTab === 0 && (
+                  <TabBody>
+                    <Ul style={{ height: height - 260 }}>
+                      {infoSchedulesByMovie
+                        .filter(
+                          ({ brand: { name: nameBrand } }) =>
+                            nameBrand !== 'Cinemex'
+                        )
+                        .map(({ computedUnique, ...item }) => (
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          <MovieDetail key={computedUnique} {...item} />
+                        ))}
+                    </Ul>
+                  </TabBody>
+                )}
+                {activeTab === 1 && (
+                  <TabBody>
+                    <Ul style={{ height: height - 260 }}>
+                      {infoSchedulesByMovie
+                        .filter(
+                          ({ brand: { name: nameBrand } }) =>
+                            nameBrand === 'Cinemex'
+                        )
+                        .map(({ computedUnique, ...item }) => (
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          <MovieDetail key={computedUnique} {...item} />
+                        ))}
+                    </Ul>
+                  </TabBody>
+                )}
+              </>
+            </>
+            /*
+            
+            */
           )}
         </WindowContentUI>
       </WindowUI>

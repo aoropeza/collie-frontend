@@ -1,6 +1,15 @@
 import React from 'react'
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeadCell,
+  TableBody,
+  TableDataCell,
+  Fieldset
+} from 'react95'
 import moment from 'moment'
-import { Article, ImgWrapper, Img } from './styles'
+import { FieldsetUI } from './styles'
 import { useNearScreen } from '../../../hooks/useNearScreen'
 
 export const MovieDetail = ({
@@ -12,25 +21,39 @@ export const MovieDetail = ({
   const [show, ref] = useNearScreen()
 
   return (
-    <Article ref={ref}>
+    <div ref={ref}>
       {show && (
-        <>
+        <FieldsetUI label={name}>
           <div>
-            <ImgWrapper style={{ display: 'inline-block' }}>
-              <Img src={logoBrand} alt="" />
-            </ImgWrapper>
             <div style={{ display: 'inline-block' }}>
-              <h2>{name}</h2>
               <h4>{`Address: ${address}`}</h4>
+              <h4>Distancia: 11km</h4>
             </div>
           </div>
-          {schedules.map(({ startTimeZone }) => (
-            <>
-              <h5>{`${moment(startTimeZone).format('hh:mm')} hrs`}</h5>
-            </>
-          ))}
-        </>
+          <Table>
+            <TableHead>
+              <TableRow head>
+                <TableHeadCell>Horario</TableHeadCell>
+                <TableHeadCell>Sala</TableHeadCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {schedules.map(({ startTimeZone }) => (
+                <>
+                  <TableRow>
+                    <TableDataCell style={{ textAlign: 'center' }}>
+                      {`${moment(startTimeZone).format('hh:mm')} hrs`}
+                    </TableDataCell>
+                    <TableDataCell style={{ textAlign: 'center' }}>
+                      Normal
+                    </TableDataCell>
+                  </TableRow>
+                </>
+              ))}
+            </TableBody>
+          </Table>
+        </FieldsetUI>
       )}
-    </Article>
+    </div>
   )
 }

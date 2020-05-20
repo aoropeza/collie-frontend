@@ -39,6 +39,13 @@ export const Ul = styled.ul`
   overflow: hidden;
   overflow-y: scroll;
 `
+export const IMG = styled.img`
+  height: 20px;
+  position: relative;
+  top: 5px;
+  margin-right: 5px;
+  border-radius: 2px;
+`
 
 export const HourglassUI = styled(Hourglass)`
   margin: 0;
