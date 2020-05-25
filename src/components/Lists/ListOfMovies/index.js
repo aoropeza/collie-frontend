@@ -9,7 +9,6 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   error,
   data: { activeMovies = [] } = {}
 }) => (
-  // TODO Make a better loading component
   <>
     <Container>
       {loading && <HourglassUI size={42} />}

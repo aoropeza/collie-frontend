@@ -11,8 +11,14 @@ import moment from 'moment'
 import { FieldsetUI } from './styles'
 import { useNearScreen } from '../../../hooks/useNearScreen'
 
-export const MovieDetail = ({ name, address, schedules }) => {
+export const MovieDetail = ({
+  name,
+  address,
+  dist_calculated: distCalculated,
+  schedules
+}) => {
   const [show, ref] = useNearScreen()
+  const km = distCalculated / 1000
 
   return (
     <div ref={ref}>
@@ -21,7 +27,7 @@ export const MovieDetail = ({ name, address, schedules }) => {
           <div>
             <div style={{ display: 'inline-block' }}>
               <h4>{`Address: ${address}`}</h4>
-              <h4>Distancia: 11km</h4>
+              <h4>{`Distancia: ${km.toFixed(1)} km`}</h4>
             </div>
           </div>
           <Table>
@@ -32,14 +38,14 @@ export const MovieDetail = ({ name, address, schedules }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {schedules.map(({ startTimeZone }) => (
+              {schedules.map(({ startTimeZone, typeRoom }) => (
                 <>
                   <TableRow>
                     <TableDataCell style={{ textAlign: 'center' }}>
                       {`${moment(startTimeZone).format('hh:mm')} hrs`}
                     </TableDataCell>
                     <TableDataCell style={{ textAlign: 'center' }}>
-                      Normal
+                      {typeRoom}
                     </TableDataCell>
                   </TableRow>
                 </>
