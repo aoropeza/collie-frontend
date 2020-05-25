@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import { Menu } from '../Menu'
 import { Ul, AppBarUI, ToolbarUI, DatePickerUI } from './styles'
+import { useLocalStorage } from '../../../hooks/useLocalStorage'
 
 const items = [
   { value: '1:00-11:59', label: '🌈 Mañana' },
@@ -21,8 +22,19 @@ export const NavBar = ({ children }) => {
 
   const [dateSelected, setDateSelected] = useState(moment())
   const [timeSelected, setTimeSelected] = useState(items[0].value)
-  const [latitudeSelected, setLatitudeSelected] = useState(19.4499759)
-  const [longitudeSelected, setLongitudeSelected] = useState(-99.0704167)
+
+  const [latitudeSelected, setLatitudeSelected] = useLocalStorage(
+    'latitudeSelected',
+    19.4319863
+  )
+  const [longitudeSelected, setLongitudeSelected] = useLocalStorage(
+    'longitudeSelected',
+    -99.13352959999999
+  )
+  const [addressSelected, setAddressSelected] = useLocalStorage(
+    'addressSelected',
+    'Plaza de la Constitución, Centro Histórico de la Cdad. de México, Centro, 06000 Ciudad de México, CDMX, Mexico'
+  )
 
   let autocomplete
 
@@ -44,6 +56,7 @@ export const NavBar = ({ children }) => {
 
     setLatitudeSelected(addressObject.geometry.location.lat())
     setLongitudeSelected(addressObject.geometry.location.lng())
+    setAddressSelected(addressObject.formatted_address)
   }
 
   const handleScriptLoad = () => {
@@ -74,7 +87,11 @@ export const NavBar = ({ children }) => {
                   <Menu />
                 </li>
                 <li>
-                  <TextField id="autocomplete" width={250} />
+                  <TextField
+                    id="autocomplete"
+                    defaultValue={addressSelected}
+                    width={250}
+                  />
                 </li>
               </Ul>
             </Grid>

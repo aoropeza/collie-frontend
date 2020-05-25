@@ -7,4 +7,4 @@ Component ready
 // LogoIcon
 // Menu
 // Movie
-// NavBar --> Set default location
+// NavBar
