@@ -5,19 +5,13 @@ import {
   TableRow,
   TableHeadCell,
   TableBody,
-  TableDataCell,
-  Fieldset
+  TableDataCell
 } from 'react95'
 import moment from 'moment'
 import { FieldsetUI } from './styles'
 import { useNearScreen } from '../../../hooks/useNearScreen'
 
-export const MovieDetail = ({
-  name,
-  address,
-  brand: { logo: logoBrand },
-  schedules
-}) => {
+export const MovieDetail = ({ name, address, schedules }) => {
   const [show, ref] = useNearScreen()
 
   return (

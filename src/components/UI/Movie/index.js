@@ -1,13 +1,12 @@
 import React from 'react'
+
+import SEARCH_IMG from '../../../images/search.png'
 import { Container, Span, Image } from './styles'
 
-const DEFAULT_IMAGE =
-  'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_rabbits.jpg'
-
-export const Movie = ({ cover = DEFAULT_IMAGE, name = '?', isSelected }) => {
+export const Movie = ({ cover, name, isSelected }) => {
   return (
     <Container>
-      <Image src={cover} alt="Associated cover to the movie" />
+      <Image src={[cover, SEARCH_IMG]} alt="Movie's cover" />
       <Span current={isSelected}>{name}</Span>
     </Container>
   )

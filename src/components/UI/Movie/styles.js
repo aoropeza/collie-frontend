@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Img } from 'react-image'
 
 export const Container = styled.div`
   display: flex;
@@ -11,7 +12,6 @@ export const Container = styled.div`
 export const Span = styled.span`
   color: #ffffff;
   user-select: none;
-  text-decoration: underline;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -25,9 +25,7 @@ export const Span = styled.span`
     `}
 `
 
-export const Image = styled.img`
-  border: 1px solid #ddd;
-  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
+export const Image = styled(Img)`
   object-fit: cover;
   height: 80px;
   width: 80px;

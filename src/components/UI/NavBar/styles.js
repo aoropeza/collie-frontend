@@ -1,11 +1,13 @@
 import styled from 'styled-components'
-import { DatePicker, AppBar, Button } from 'react95'
+import { DatePicker, AppBar, Button, Toolbar } from 'react95'
 
 export const AppBarUI = styled(AppBar)`
   min-height: 50px;
   justify-content: space-around;
   z-index: 1000;
 `
+
+export const ToolbarUI = styled(Toolbar)``
 
 export const Ul = styled.ul`
   padding: 0;

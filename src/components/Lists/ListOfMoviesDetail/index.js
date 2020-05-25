@@ -14,14 +14,12 @@ import {
   Ul,
   IMG
 } from './styles'
-import { messageService } from '../../../services'
 
 const renderProp = ({ name, setMovieSelected }) => ({
   loading,
   error,
   data: { infoSchedulesByMovie = [] } = {}
 }) => {
-  messageService.sendMessage(name)
   const { height } = useWindowDimensions()
   const [activeTab, setActiveTab] = useState(0)
   return (
@@ -34,7 +32,6 @@ const renderProp = ({ name, setMovieSelected }) => ({
             square
             onClick={() => {
               setMovieSelected(undefined)
-              messageService.sendMessage(undefined)
             }}
           >
             <SpanUI>x</SpanUI>

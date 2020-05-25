@@ -40,7 +40,7 @@ export const Ul = styled.ul`
   overflow-y: scroll;
 `
 export const IMG = styled.img`
-  height: 20px;
+  height: 22px;
   position: relative;
   top: 5px;
   margin-right: 5px;

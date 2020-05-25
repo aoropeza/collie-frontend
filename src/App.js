@@ -20,13 +20,20 @@ export const App = () => {
       <ThemeProvider theme={themes.default}>
         <GlobalStyles />
         <NavBar>
-          {({ dateSelected, timeSelected }) => {
+          {({
+            dateSelected,
+            timeSelected,
+            latitudeSelected,
+            longitudeSelected
+          }) => {
             return (
               <Router>
                 <SceneSearch
                   path="/"
                   dateSelected={dateSelected}
                   timeSelected={timeSelected}
+                  latitudeSelected={latitudeSelected}
+                  longitudeSelected={longitudeSelected}
                 />
                 <SceneAbout path="/about" />
               </Router>

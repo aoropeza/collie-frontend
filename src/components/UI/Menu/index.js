@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { Button, List, ListItem } from 'react95'
+import { ListItem } from 'react95'
 import { Link } from '@reach/router'
+
 import { LogoIcon } from '../LogoIcon'
-import { Container } from './styles'
+import { ButtonUI, ListUI } from './styles'
 
 export const Menu = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <Container style={{ display: 'inline' }}>
+    <>
       {open && (
-        <List
+        <ListUI
           horizontalAlign="left"
           verticalAlign="bottom"
           open={open}
@@ -22,16 +23,12 @@ export const Menu = () => {
           <ListItem>
             <Link to="/about"> About </Link>
           </ListItem>
-        </List>
+        </ListUI>
       )}
-      <Button
-        onClick={() => setOpen(!open)}
-        active={open}
-        style={{ fontWeight: 'bold' }}
-      >
-        <LogoIcon style={{ marginLeft: -2, marginRight: 4 }} />
+      <ButtonUI onClick={() => setOpen(!open)} active={open}>
+        <LogoIcon />
         Start
-      </Button>
-    </Container>
+      </ButtonUI>
+    </>
   )
 }

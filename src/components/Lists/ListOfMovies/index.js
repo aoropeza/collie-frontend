@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import { QueryActiveMovies } from '../../../queries/QueryActiveMovies'
 import { Movie } from '../../UI/Movie'
-import { Container } from './styles'
+import { Container, HourglassUI } from './styles'
 
 const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   loading,
@@ -12,7 +12,7 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   // TODO Make a better loading component
   <>
     <Container>
-      {loading && <p>Loading...</p>}
+      {loading && <HourglassUI size={42} />}
       {error && <p>Error!!!</p>}
       {!loading && !error && (
         <>
@@ -45,11 +45,11 @@ const renderProp = ({ children, movieSelected, setMovieSelected }) => ({
   </>
 )
 
-export const ListOfMovies = ({ children }) => {
+export const ListOfMovies = ({ children, date, timeOfDay }) => {
   const [movieSelected, setMovieSelected] = useState(undefined)
   return (
     <>
-      <QueryActiveMovies date="2020-03-24" timeOfDay="12:00-17:59">
+      <QueryActiveMovies date={date} timeOfDay={timeOfDay}>
         {renderProp({ children, movieSelected, setMovieSelected })}
       </QueryActiveMovies>
     </>

@@ -2,19 +2,23 @@ import React from 'react'
 import { ListOfMovies } from '../../Lists/ListOfMovies/index'
 import { ListOfMoviesDetail } from '../../Lists/ListOfMoviesDetail'
 
-export const SceneSearch = ({ dateSelected, timeSelected }) => {
+export const SceneSearch = ({
+  dateSelected,
+  timeSelected,
+  latitudeSelected,
+  longitudeSelected
+}) => {
   return (
-    <ListOfMovies>
+    <ListOfMovies date={dateSelected} timeOfDay={timeSelected}>
       {({ movieSelected, setMovieSelected }) => {
         return (
           movieSelected && (
             <ListOfMoviesDetail
               movie={movieSelected}
-              // date="2020-03-20"
               date={dateSelected}
               timeOfDay={timeSelected}
-              latitude={19.4499759}
-              longitude={-99.0704167}
+              latitude={latitudeSelected}
+              longitude={longitudeSelected}
               setMovieSelected={setMovieSelected}
             />
           )
