@@ -20,3 +20,19 @@ Component ready
 // UI/Movie
 // UI/MovieDetails
 // UI/NavBar
+
+https://github.com/mingrammer/diagrams
+https://shekhargulati.com/2020/04/21/software-architecture-diagrams-as-code/
+
+https://c4model.com/
+https://www.youtube.com/watch?v=LaZNPkR35ak
+https://github.com/RicardoNiepel/C4-PlantUML
+https://plantuml.com/
+https://structurizr.com/
+https://github.com/adrianvlupu/C4-Builder
+
+https://www.archimatetool.com/
+https://www.opengroup.org/togaf
+https://arc42.org/
+
+https://www.codingthearchitecture.com/
