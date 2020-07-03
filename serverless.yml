@@ -1,0 +1,14 @@
+service: collie-frontend
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+
+functions:
+
+resources:
+  - ${file(resources/s3-bucket.yml)}
