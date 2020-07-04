@@ -6,7 +6,7 @@ Resources:
         ErrorDocument: index.html
         IndexDocument: index.html
   Outputs:
-    BucketUrl:
-      Value: !GetAtt 'S3Bucket.WebsiteURL'
+    WebsiteURL:
+      Value: !GetAtt S3Bucket.WebsiteURL
     WebSiteBucket:
       Value: !Ref S3Bucket
