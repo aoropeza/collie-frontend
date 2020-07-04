@@ -1,12 +1,12 @@
 Resources:
-  Website:
+  S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
       WebsiteConfiguration:
         ErrorDocument: index.html
         IndexDocument: index.html
   Outputs:
-    WebSiteUrl:
-      Value: !GetAtt 'Website.WebsiteURL'
+    BucketUrl:
+      Value: !GetAtt 'S3Bucket.WebsiteURL'
     WebSiteBucket:
-      Value: !Ref Website
+      Value: !Ref S3Bucket
