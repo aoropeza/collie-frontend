@@ -6,7 +6,7 @@ Resources:
         ErrorDocument: index.html
         IndexDocument: index.html
   Outputs:
-    WebsiteURL:
-      Value: { 'Fn::GetAtt': [Website, WebsiteURL] }
+    WebSiteUrl:
+      Value: !GetAtt 'S3Bucket.WebsiteURL'
     WebSiteBucket:
-      Value: { Ref: Website }
+      Value: !Ref Website
