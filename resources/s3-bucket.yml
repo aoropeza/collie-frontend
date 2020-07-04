@@ -6,7 +6,7 @@ Resources:
         ErrorDocument: index.html
         IndexDocument: index.html
   Outputs:
-    WebSiteUrl:
+    WebsiteURL:
       Value: { 'Fn::GetAtt': [Website, WebsiteURL] }
     WebSiteBucket:
       Value: { Ref: Website }
