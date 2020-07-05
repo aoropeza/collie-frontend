@@ -43,6 +43,3 @@ Resources:
           ## The origin id defined above
           TargetOriginId: !Ref Website
           ViewerProtocolPolicy: 'redirect-to-https' # we want to force HTTPS
-        ## The certificate to use when viewers use HTTPS to request objects.
-        ViewerCertificate:
-          CloudFrontDefaultCertificate: 'true'
