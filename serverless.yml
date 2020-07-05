@@ -9,9 +9,11 @@ provider:
   region: us-east-1
   environment:
     BUCKET_WEBSITE_NAME: ${env:BUCKET_WEBSITE_NAME}
+    DOMAIN_NAME: ${env:DOMAIN_NAME}
 
 functions:
 
 resources:
   - ${file(resources/s3-bucket.yml)}
+  - ${file(resources/certificate.yml)}
   - ${file(resources/cloudfront.yml)}

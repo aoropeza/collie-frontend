@@ -1,0 +1,8 @@
+Resources:
+  Cert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: ${self:provider.environment.DOMAIN_NAME}
+      DomainValidationOptions:
+        DomainName: ${self:provider.environment.DOMAIN_NAME}
+      ValidationMethod: DNS

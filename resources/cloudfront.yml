@@ -19,8 +19,8 @@ Resources:
           - ErrorCode: 404
             ResponseCode: 200
             ResponsePagePath: /index.html
-        Aliases:
-          - collie.alexoropeza.dev
+        #Aliases:
+        #  - collie.alexoropeza.dev
         DefaultCacheBehavior:
           AllowedMethods:
             - DELETE
