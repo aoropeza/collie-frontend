@@ -10,6 +10,7 @@ provider:
   environment:
     BUCKET_WEBSITE_NAME: ${env:BUCKET_WEBSITE_NAME}
     DOMAIN_NAME: ${env:DOMAIN_NAME}
+    HOSTED_ZONE_ID: ${env:: ${env:DOMAIN_NAME}}
 
 functions:
 
