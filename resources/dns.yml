@@ -2,8 +2,7 @@ Resources:
   DNS:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneId:
-        Ref: ${self:provider.environment.HOSTED_ZONE_ID}
+      HostedZoneId: ${self:provider.environment.HOSTED_ZONE_ID}
       RecordSets:
         - Name: ${self:provider.environment.DOMAIN_NAME}
           Type: A
