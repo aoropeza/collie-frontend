@@ -12,3 +12,4 @@ functions:
 
 resources:
   - ${file(resources/s3-bucket.yml)}
+  - ${file(resources/cloudfront.yml)}

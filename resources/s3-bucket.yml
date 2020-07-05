@@ -1,5 +1,5 @@
 Resources:
-  S3Bucket:
+  Website:
     Type: AWS::S3::Bucket
     Properties:
       WebsiteConfiguration:
@@ -7,6 +7,6 @@ Resources:
         IndexDocument: index.html
 Outputs:
   WebsiteURL:
-    Value: !GetAtt S3Bucket.WebsiteURL
+    Value: !GetAtt Website.WebsiteURL
   WebSiteBucket:
-    Value: !Ref S3Bucket
+    Value: !Ref Website
