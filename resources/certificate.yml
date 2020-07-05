@@ -5,4 +5,5 @@ Resources:
       DomainName: ${self:provider.environment.DOMAIN_NAME}
       DomainValidationOptions:
         - DomainName: ${self:provider.environment.DOMAIN_NAME}
+          ValidationDomain: ${self:provider.environment.DOMAIN_NAME}
       ValidationMethod: DNS
