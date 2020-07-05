@@ -2,6 +2,16 @@ Resources:
   Website:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName:
+        Fn::Join:
+          [
+            '-',
+            [
+              'collie-frontend',
+              { 'Fn::Sub': '${self:custom.stage}' },
+              'website',
+            ],
+          ]
       WebsiteConfiguration:
         ErrorDocument: index.html
         IndexDocument: index.html
