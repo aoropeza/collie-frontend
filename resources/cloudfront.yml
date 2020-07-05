@@ -12,6 +12,10 @@ Resources:
               HTTPSPort: 443
               OriginProtocolPolicy: https-only
         Enabled: true
+        ViewerCertificate:
+          AcmCertificateArn: !Ref Cert
+          MinimumProtocolVersion: TLSv1
+          SslSupportMethod: sni-only
         DefaultRootObject: index.html
         ## Since the Single Page App is taking care of the routing we need to make sure ever path is served with index.html
         # Configure the caching behavior for our CDN
@@ -19,8 +23,8 @@ Resources:
           - ErrorCode: 404
             ResponseCode: 200
             ResponsePagePath: /index.html
-        #Aliases:
-        #  - collie.alexoropeza.dev
+        Aliases:
+          - ${self:provider.environment.DOMAIN_NAME}
         DefaultCacheBehavior:
           AllowedMethods:
             - DELETE
