@@ -7,9 +7,8 @@ Resources:
           [
             '-',
             [
-              'collie-frontend',
+              { 'Fn::Sub': '${self:provider.environment.BUCKET_WEBSITE_NAME}' },
               { 'Fn::Sub': '${self:custom.stage}' },
-              'website',
             ],
           ]
       WebsiteConfiguration:
