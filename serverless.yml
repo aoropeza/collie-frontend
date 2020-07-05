@@ -17,3 +17,4 @@ resources:
   - ${file(resources/s3-bucket.yml)}
   - ${file(resources/certificate.yml)}
   - ${file(resources/cloudfront.yml)}
+  - ${file(resources/dns.yml)}
